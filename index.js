@@ -10,7 +10,11 @@ const { readPsd, initializeCanvas } = require('ag-psd');
 initializeCanvas(createCanvas, loadImage);
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: 'https://psdtojson-frontend.vercel.app',
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type']
+}));
 app.use(express.json({ limit: '100mb' }));
 
 // Configure directories
